@@ -50,8 +50,8 @@ fun TipCalculatorScreen() {
 
 
     var serviceTipAmountInput by remember { mutableStateOf("") }
-    val tipamount = serviceTipAmountInput.toDoubleOrNull() ?: 0.0
-    val tip = calculateTip(amount, tipamount)
+    val tipAmount = serviceTipAmountInput.toDoubleOrNull() ?: 0.0
+    val tip = calculateTip(amount, tipAmount)
 
     Column(
         modifier = Modifier.padding(32.dp),
@@ -72,12 +72,10 @@ fun TipCalculatorScreen() {
                 // set the random number to serviceTipAmountInput variable
                 serviceCostAmountInput = randomNumber.toString()
 
-
 //                EditServiceCostField(
 //                    value = serviceCostAmountInput,
 //                    onValueChange = { serviceCostAmountInput = it }
 //                )
-
 
             },
             modifier = Modifier.fillMaxWidth() // set the button width to match the parent container
@@ -93,35 +91,34 @@ fun TipCalculatorScreen() {
         EditServiceCostField(
             value = serviceCostAmountInput,
             onValueChange = { serviceCostAmountInput = it }
-)
+        )
 
         Spacer(Modifier.height(24.dp))
 
-Row(
-    modifier = Modifier.align(Alignment.CenterHorizontally)
+        Row(
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        ) {
+            Button(onClick = {
+                //your onclick code here
+                serviceTipAmountInput = "10"
+            }) {
+                Text(
+                    text = stringResource(R.string.tip1)
+                )
+            }
+            Spacer(Modifier.width(10.dp))
 
+            Button(onClick = {
+                //your onclick code here
+                serviceTipAmountInput = "15"
 
-) {
-    Button(onClick = {
-        //your onclick code here
-        serviceTipAmountInput = "10"
-    }) {
-        Text(
-            text = stringResource(R.string.tip1)
-        )
-    }
-    Spacer(Modifier.width(10.dp))
+            }) {
+                Text(
+                    text = stringResource(R.string.tip2)
+                )
+            }
+        }
 
-    Button(onClick = {
-        //your onclick code here
-        serviceTipAmountInput = "15"
-
-    }) {
-        Text(
-            text = stringResource(R.string.tip2)
-        )
-    }
-}
         Row(
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ){
@@ -175,24 +172,7 @@ Row(
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
-
-
     }
-
-}
-
-
-@Composable
-fun TipButton() {
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -214,10 +194,6 @@ fun EditServiceCostField(
         modifier = Modifier.fillMaxWidth(),
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-
-
-
-
     )
 }
 
